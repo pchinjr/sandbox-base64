@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Praise Cage!</h1>
+  <button onClick="uploadPhoto()">Upload Photo</button>
+  <canvas>
+    An alternative text describing what your canvas displays.
+  </canvas>
+
+<script>
+  const canvas = document.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'green';
+  ctx.fillRect(0,0,100,100);
+
+  function uploadPhoto() {
+      // take the data out of the canvas
+      const data = canvas.toDataURL();
+      console.log(`clientside - ${data}`)
+      fetch('/upload', {
+        method: "POST",
+        body: JSON.stringify({ data }),
+        headers: {
+          "content-type": "application/json"
+        }
+      })
+        .then(blob => blob.json())
+        .then(res => console.log(`serverside - ${res}`))
+        .catch(err => console.error(err))
+    }
+</script>
+
+</body>
+</html>

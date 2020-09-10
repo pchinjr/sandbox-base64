@@ -1,8 +1,10 @@
 @app
 begin-app
 
+@static
+
 @http
-get /
+post /upload
 
 @tables
 data

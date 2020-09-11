@@ -18,5 +18,6 @@ exports.handler = async function http(req) {
       'content-type': 'image/png'
     },
     body: JSON.stringify(b64),
+    isBase64Encoded: 'true'
   }
 }

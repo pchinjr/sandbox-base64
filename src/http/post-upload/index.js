@@ -3,10 +3,9 @@ exports.handler = async function http(req) {
 
   let body = req.body //base64 encoded string
   let data = body.replace(/^data:image\/\w+;base64,/, "");
-  console.log(data)
+  console.log(body)
   let buff = Buffer.from(data, 'base64')
-  fs.writeFileSync('image.png',buff)
-  console.log('wrote file')
+   console.log('wrote file')
   let b64 = buff.toString('base64') // still the wrong one - needs to be decoded again
 
 
